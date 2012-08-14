@@ -2,3 +2,4 @@ logs/*
 run/*
 *.pyc
 data/subbers.txt
+data/threadcounter.txt
