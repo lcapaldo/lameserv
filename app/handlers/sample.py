@@ -17,24 +17,3 @@ def START(message, address=None, host=None):
         
         relay.deliver(resp.to_message())
 
-
-#@route_like(START)
-#def NEW_USER(message, address=None, host=None):
-#    return NEW_USER
-#
-#
-#@route_like(START)
-#def END(message, address=None, host=None):
-#    return NEW_USER(message, address, host)
-#
-#
-#@route_like(START)
-#@stateless
-#def FORWARD(message, address=None, host=None):
-#
-#@route_like(START)
-#@stateless
-#def CHECK_SUB(message, address=None, host=None):
-#    if "subscribe" in message.body():
-#        logging.debug("%s@%s wants to subscribe" % (address, host))
-#
