@@ -22,7 +22,11 @@ def END(message, address=None, host=None):
 @route_like(START)
 @stateless
 def FORWARD(message, address=None, host=None):
-    relay.deliver(message)
+    subs = open('data/subbers.txt', 'r')
+    for sub in subs:
+        message['To'] = sub.rstrip("\n\r")
+        message['From'] = "lameserv@lameserv.net"
+        relay.deliver(message)
 
 @route_like(START)
 @stateless
