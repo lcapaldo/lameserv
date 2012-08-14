@@ -24,3 +24,9 @@ def END(message, address=None, host=None):
 def FORWARD(message, address=None, host=None):
     relay.deliver(message)
 
+@route_like(START)
+@stateless
+def CHECK_SUB(message, address=None, host=None):
+    if "subscribe" in message.body():
+        logging.debug("%s@%s wants to subscribe" % (address, host))
+
