@@ -2,6 +2,7 @@ import logging
 from lamson.routing import route, route_like, stateless
 from config.settings import relay
 from lamson import view
+from app.model import subscribers
 
 
 @route("(address)@(host)", address=".+")
@@ -22,9 +23,12 @@ def END(message, address=None, host=None):
 @route_like(START)
 @stateless
 def FORWARD(message, address=None, host=None):
-    subs = open('data/subbers.txt', 'r')
+    subs = subscribers.Subscribers()
+    if not subs.is_subscriber(message["From"]):
+        return
+
     for sub in subs:
-        message['To'] = sub.rstrip("\n\r")
+        message['To'] = sub
         message['From'] = "lameserv@lameserv.net"
         relay.deliver(message)
 
