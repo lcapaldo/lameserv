@@ -12,10 +12,10 @@ def START(message, address=None, host=None):
         return
     
     subj = "[st: %d] %s" % (threadcounter.ThreadCounter().count(), message["Subject"])
-
+    
     for sub in subs:
-        resp = mail.MailResponse(sub, "lameserv@example.com", subj, message.body())
+        resp = mail.MailResponse(sub, message["From"], subj, message.body())
         resp.attach_all_parts(message)
-        
+        resp["Reply-To"] = "lameserv@example.com" 
         relay.deliver(resp.to_message())
 
