@@ -1,3 +1,5 @@
+from email.utils import parseaddr
+
 class Subscribers:
   def __init__(self):
       subs = open('data/subbers.txt', 'r')
@@ -7,7 +9,7 @@ class Subscribers:
       subs.close()
   
   def is_subscriber(self, addr):
-      return addr in self._subs
+      return parseaddr(addr.lower())[1] in self._subs
   
   def __iter__(self):
     for sub in self._subs:
