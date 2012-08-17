@@ -16,7 +16,7 @@ def START(message, address=None, host=None):
     for sub in subs:
         resp = mail.MailResponse(To=sub, From=message["From"], Subject=subj, Body=message.body())
         resp.attach_all_parts(message)
-        resp["Reply-To"] = "lameserv@example.com" 
-        resp["Sender"] = "lameserv@example.com" 
+        resp["Reply-To"] = lameserv_endpoint_address 
+        resp["Sender"] = lameserv_endpoint_address
         relay.deliver(resp.to_message())
 
