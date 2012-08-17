@@ -1,11 +1,11 @@
 import logging
 from lamson.routing import route, route_like, stateless
-from config.settings import relay
+from config.settings import relay, lameserv_endpoint_address
 from lamson import view, mail
 from app.model import subscribers, threadcounter
 
 
-@route("lameserv@example.com")
+@route(lameserv_endpoint_address)
 def START(message, address=None, host=None):
     subs = subscribers.Subscribers()
     if not subs.is_subscriber(message["From"]):

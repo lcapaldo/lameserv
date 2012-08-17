@@ -15,3 +15,6 @@ router_defaults = {'host': '.+'}
 template_config = {'dir': 'app', 'module': 'templates'}
 
 # the config/boot.py will turn these values into variables set in settings
+
+lameserv_endpoint_address = "lameserv@example.com"
+lameserv_bounce_address = "lameserv-bounces@example.com"
