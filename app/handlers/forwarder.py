@@ -28,6 +28,10 @@ def START(message, address=None, host=None):
         resp["Reply-To"] = lameserv_endpoint_address 
         resp["Sender"] = lameserv_endpoint_address
         resp["To"] = lameserv_endpoint_address
+        if "In-Reply-To" in message:
+           resp["In-Reply-To"] = message["In-Reply-To"]
+        if "References" in message:
+           resp["References"] = message["References"]
         relay.deliver(resp.to_message(), To=sub, From=lameserv_endpoint_address)
 
 @route("(address)@(host)", address=".+")
