@@ -7,11 +7,11 @@ from app.model import subscribers, threadcounter, mutators
 from lamson.server import SMTPError
 
 def build_subject(count, original_subject):
-    m = re.search(r"^(Re:\s+)\[st (\d+)\](.*)", original_subject, re.I)
+    m = re.search(r"^(Re:\s+)\[st: (\d+)\](.*)", original_subject, re.I)
     if m is None:
-        return "[st %d] %s" % (count, original_subject)
+        return "[st:  %d] %s" % (count, original_subject)
     else:
-        return "%s[st %d]%s" % (m.group(1), count, m.group(3))
+        return "%s[st: %d]%s" % (m.group(1), count, m.group(3))
 
 @route(lameserv_endpoint_address)
 def START(message, address=None, host=None):
